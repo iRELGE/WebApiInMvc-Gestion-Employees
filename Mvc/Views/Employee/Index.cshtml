@@ -1,0 +1,75 @@
+﻿@model IEnumerable<Mvc.Models.MvcEmployeeModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<br />
+
+<p>
+    <a class="btn btn-outline-secondary" href="@Url.Action("AddOrEdit","Employee")"><i class="fas fa-plus mr-1"></i>Create new</a>
+
+</p>
+<table class="table table-striped table-hover">
+    <tr class="text-white bg-secondary">
+    <th>
+        @Html.DisplayNameFor(model => model.Name)
+    </th>
+    <th>
+        @Html.DisplayNameFor(model => model.Position)
+    </th>
+    <th>
+        @Html.DisplayNameFor(model => model.Age)
+    </th>
+    <th>
+        @Html.DisplayNameFor(model => model.Salary)
+    </th>
+    <th>
+        Actions
+    </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Position)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Age)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Salary)
+            </td>
+            <td>
+                <a href="@Url.Action("AddOrEdit", new { id=item.EmployeeId})" class="btn btn-outline-secondary"><i class="fas fa-pen"></i></a>
+
+                <a onclick="Delete(@item.EmployeeId)" class="btn btn-outline-secondary"><i class="fas fa-trash-alt"></i></a>
+            </td>
+        </tr>
+    }
+</table>
+@section scripts{
+  <script>
+      var successMessage = '@TempData["SuccessMessage"]'
+     
+      if (successMessage !="") {
+
+          alertify.success(successMessage);
+      }
+      function Delete (id)
+      {
+
+          alertify.confirm("Delete Confirmation", "Are you Sure", function ()
+          { window.location.href = '@Url.Action("Delete","Employee")/' + id }
+              , null
+          )
+      }
+
+     
+    </script>  
+
+}

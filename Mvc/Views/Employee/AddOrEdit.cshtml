@@ -1,0 +1,74 @@
+﻿@model Mvc.Models.MvcEmployeeModel
+@{
+    ViewBag.Title = "AddOrEdit";
+}
+<br />
+<div class="">
+
+
+    @using (Html.BeginForm("AddOrEdit", "Employee", FormMethod.Post))
+    {
+    @*<form class="form-group mb-4">
+        <input class="form-control form-control-lg" type="text" placeholder=".form-control-lg">
+        <input class="form-control" type="text" placeholder="Default input">
+        <input class="form-control form-control-sm" type="text" placeholder=".form-control-sm">
+    </form>*@
+
+        
+        @Html.HiddenFor(model => model.EmployeeId)
+    <div class="">
+        @Html.LabelFor(model => model.Name)
+        @Html.EditorFor(model => model.Name, new { @class = "btn btn-default"})
+        @Html.ValidationMessageFor(model => model.Name)
+    </div>
+   
+
+        <div>
+            @Html.LabelFor(model => model.Position)
+            @Html.EditorFor(model => model.Position)
+            @Html.ValidationMessageFor(model => model.Position)
+
+        </div>
+
+        <div>
+            @Html.LabelFor(model => model.Age)
+            @Html.EditorFor(model => model.Age)
+            @Html.ValidationMessageFor(model => model.Age)
+
+        </div>
+
+        <div>
+            @Html.LabelFor(model => model.Salary)
+            @Html.EditorFor(model => model.Salary)
+            @Html.ValidationMessageFor(model => model.Salary)
+
+        </div>
+
+    
+            <div>
+        
+
+
+
+
+        <input type="submit" value="submit" class="btn btn-success" />
+
+
+
+        <input type="reset" value="Reset" class="btn btn-danger" />
+    </div>
+
+
+
+        }
+    
+  
+    
+
+</div>
+@section scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+    
+    }
+
+
